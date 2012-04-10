@@ -1,0 +1,21 @@
+{
+    "name": "avro/queue-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony2 Queue Bundle",
+    "keywords": ["code queue"],
+    "homepage": "http://github.com/AvroQueueBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joris de Wit",
+            "email": "joris.w.dewit@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2"
+    },
+    "autoload": {
+        "psr-0": { "Avro\\QueueBundle": "" }
+    },
+    "target-dir": "Avro/QueueBundle"
+}
