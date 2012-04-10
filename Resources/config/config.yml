@@ -1,0 +1,7 @@
+services:
+    avro_queue.queue.listener:
+        class: Avro\QueueBundle\Listener\QueueListener
+        arguments: ["@router"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: init }
+

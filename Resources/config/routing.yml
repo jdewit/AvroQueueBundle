@@ -1,0 +1,4 @@
+avro_queue_cancel:
+    resource: "@AvroQueueBundle/Controller/QueueController.php"
+    type:     annotation 
+
