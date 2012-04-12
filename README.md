@@ -16,21 +16,23 @@ path you want to redirect to
     $session = $request->getSession();
     $session->set('queue', array('path' => 'avro_crm_crew_edit', 'ids' => $selected));
 
-    return new RedirectResponse($this->container->get('router')->generate('avro_crm_crew_edit', {'id': reset($selected) }));
+    return new RedirectResponse($this->container->get('router')->generate('avro_crm_crew_edit', array('id' => reset($selected))));
 ```
 
 Add the queue notice to your view
 
 ``` php
 //layout.html.twig
-    {% if app.session.get('queue') is defined and app.session.get('queue').ids | length > 0 %}
-        <div id="queueContainer" class="well pull-right">
-            <p>You have {{ app.session.get('queue').ids | length }} item{% if app.session.get('queue').ids | length > 1 %}s{% endif %} in queue.</p>
-            <div class="center-align">
-                <a class="btn" href="{{ path('avro_queue_queue_cancel') }}">Cancel<a>
-                <a class="btn btn-primary" href="{{ path(app.session.get('queue').route, {'id': app.session.get('queue').ids | reset}) }}">Next</a>
+    {% if app.session.get('queue') is defined %}
+        {% if app.session.get('queue').ids | length > 0 %}
+            <div id="queueContainer" class="well pull-right">
+                <p>You have {{ app.session.get('queue').ids | length }} item{% if app.session.get('queue').ids | length > 1 %}s{% endif %} in queue.</p>
+                <div class="center-align">
+                    <a class="btn" href="{{ path('avro_queue_queue_cancel') }}">Cancel<a>
+                    <a class="btn btn-primary" href="{{ path(app.session.get('queue').route, {'id': app.session.get('queue').ids | reset}) }}">Next</a>
+                </div>
             </div>
-        </div>
+        {% endif %}
     {% endif %}
 ```
 
@@ -39,6 +41,16 @@ Add routing file
 // app/routing.yml
 AvroQueueBundle:
     resource: "@AvroQueueBundle/Resources/config/routing.yml"
+```
+Configuration
+-------------
+When a user follows the cancel router to remove the queue from the session, the user will redirected to the previous url.
+You must specify a fallback route (probably your homepage) in case there is no refferal url set.
+
+``` yml
+// config.yml
+avro_queue:
+    fallback_route: avro_demo_test_index
 ```
 
 Installation

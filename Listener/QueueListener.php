@@ -5,9 +5,10 @@ use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Router;
+use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 
 /*
- * Adds a request to a queue
+ * Redirects to a specified route if there are items in the queue session
  *
  * @author Joris de Wit <joris.w.dewit@gmail.com>
  */
