@@ -26,6 +26,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('fallback_route')->isRequired()->cannotBeEmpty()->end()
+                ->booleanNode('use_referer')->defaultTrue()->end()
             ->end();
 
 

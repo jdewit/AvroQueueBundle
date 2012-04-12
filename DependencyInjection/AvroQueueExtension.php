@@ -21,6 +21,7 @@ class AvroQueueExtension extends Extension
         $loader->load('config.yml');
 
         $container->setParameter('avro_queue.fallback_route', $config['fallback_route']);
+        $container->setParameter('avro_queue.use_referer', $config['use_referer']);
 
     }
 }

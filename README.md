@@ -29,7 +29,7 @@ Add the queue notice to your view
                 <p>You have {{ app.session.get('queue').ids | length }} item{% if app.session.get('queue').ids | length > 1 %}s{% endif %} in queue.</p>
                 <div class="center-align">
                     <a class="btn" href="{{ path('avro_queue_queue_cancel') }}">Cancel<a>
-                    <a class="btn btn-primary" href="{{ path(app.session.get('queue').route, {'id': app.session.get('queue').ids | reset}) }}">Next</a>
+                    <a class="btn btn-primary" href="{{ path('avro_queue_queue_next') }}">Next</a>
                 </div>
             </div>
         {% endif %}
@@ -44,13 +44,14 @@ AvroQueueBundle:
 ```
 Configuration
 -------------
-When a user follows the cancel router to remove the queue from the session, the user will redirected to the previous url.
-You must specify a fallback route (probably your homepage) in case there is no refferal url set.
 
 ``` yml
 // config.yml
 avro_queue:
-    fallback_route: avro_demo_test_index
+    fallback_route: avro_demo_test_index #When a user follows the cancel route to remove the queue from the session, 
+        # the user will redirected to the previous url. You must specify a fallback route 
+        # (probably your homepage) in case there is no refferal url set.
+    use_referer: true # only use fallback route if false
 ```
 
 Installation
