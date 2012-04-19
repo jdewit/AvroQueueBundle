@@ -29,7 +29,6 @@ class Configuration implements ConfigurationInterface
                 ->booleanNode('use_referer')->defaultTrue()->end()
             ->end();
 
-
         return $treeBuilder;
     }
 
